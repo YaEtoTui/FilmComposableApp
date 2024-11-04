@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
@@ -29,6 +30,7 @@ class MainTabScreenFinal(
     private val navModel: MultiScreenNavModel = MultiScreenNavModel(
         ListScreen(),
         AnotherScreen(),
+        FavoriteScreen(),
         SettingsScreen(),
         selected = 0
     )
@@ -98,5 +100,6 @@ enum class MainTabs(
 ) {
     HOME(Icons.AutoMirrored.Rounded.List, "List"),
     PROFILE(Icons.Default.Face, "Profile"),
+    FAVORITES(Icons.Default.Favorite, "Favorite"),
     SETTINGS(Icons.Default.Settings, "Settings")
 }

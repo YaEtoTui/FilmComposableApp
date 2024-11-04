@@ -69,7 +69,7 @@ class FilmViewModel(
             mutableState.items = emptyList()
             mutableState.error = null
 
-            mutableState.items = repository.getFilms(viewState.searchName)
+            mutableState.items = repository.getFilms(viewState.searchName, viewState.countSearchFilm)
                 .filter { it.year == viewState.year }
                 .take(viewState.countSearchFilm)
         }
@@ -106,6 +106,13 @@ class FilmViewModel(
             settings[KEY_SEARCH_NAME] = nameFilm
             settings[KEY_COUNT] = countSearchFilm
             settings[KEY_YEAR] = year
+        }
+    }
+
+    fun onFavoriteClicked(film: Film) {
+        viewModelScope.launch {
+            mutableState.items.find { it.name == film.name && it.year == film.year }
+                ?.let { repository.saveFilm(film) }
         }
     }
 
