@@ -34,8 +34,13 @@ class FilmViewModel(
         }
     }
 
+    fun setSearchName(nameFilm: String) {
+        mutableState.searchName = nameFilm
+        loadFilms()
+    }
+
     private class MutableListState : ListState {
-        override var searchName: String by mutableStateOf("скубиду")
+        override var searchName: String by mutableStateOf("Шерлок")
         override var items: List<Film> by mutableStateOf(emptyList())
         override var error: String? by mutableStateOf(null)
         override var loading: Boolean by mutableStateOf(false)
