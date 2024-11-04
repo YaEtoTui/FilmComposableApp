@@ -8,6 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -38,9 +42,9 @@ class SettingsScreen(
             val viewModel = koinViewModel<FilmViewModel>()
             val state = viewModel.viewState
 
-            var searchText: String = state.searchName
-            var countSearchFilm: Int = state.countSearchFilm
-            var year: Int = state.year
+            var searchText by remember { mutableStateOf(state.searchName) }
+            var countSearchFilm by remember { mutableStateOf(state.countSearchFilm) }
+            var year by remember { mutableStateOf(state.year) }
 
             TextField(
                 value = searchText,
