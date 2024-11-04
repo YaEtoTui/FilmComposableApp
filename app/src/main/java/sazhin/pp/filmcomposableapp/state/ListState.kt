@@ -11,4 +11,5 @@ interface ListState {
     val items: List<Film>
     val error: String?
     var loading: Boolean
+    var isNotDefault: Boolean
 }

@@ -9,6 +9,8 @@ import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +26,10 @@ import com.github.terrakok.modo.multiscreen.MultiScreen
 import com.github.terrakok.modo.multiscreen.MultiScreenNavModel
 import com.github.terrakok.modo.multiscreen.selectScreen
 import kotlinx.parcelize.Parcelize
+import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
+import sazhin.pp.filmcomposableapp.utils.cache.CacheService
+import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 
 @Parcelize
 class MainTabScreenFinal(
@@ -80,11 +86,25 @@ fun MainTabContent(
                                 alpha = if (pos == selectedTabPos) contentColor.alpha else 0.5f
                             ), label = ""
                         )
-                        Icon(
-                            rememberVectorPainter(tab.icon),
-                            tint = color,
-                            contentDescription = tab.title
-                        )
+
+                        val viewModel = koinViewModel<FilmViewModel>()
+                        val cacheService = CacheService(viewModel)
+
+                        if (cacheService.isNotDefault() && tab.title == "Settings") {
+                            BadgedBox(
+                                badge = {
+                                    Badge()
+                                }
+                            ) {
+                                Icon(imageVector = tab.icon, contentDescription = "")
+                            }
+                        } else {
+                            Icon(
+                                rememberVectorPainter(tab.icon),
+                                tint = color,
+                                contentDescription = tab.title
+                            )
+                        }
                     }
                 }
             }

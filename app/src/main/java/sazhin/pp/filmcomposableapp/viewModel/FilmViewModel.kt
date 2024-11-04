@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -32,16 +33,19 @@ class FilmViewModel(
     val KEY_SEARCH_NAME = stringPreferencesKey("search_name")
     val KEY_COUNT = intPreferencesKey("count")
     val KEY_YEAR = intPreferencesKey("year")
+    val KEY_IS_NOT_DEFAULT = booleanPreferencesKey("is_not_default")
     val counterFlow: Flow<PreferencesDto> = context.dataStore.data
         .map { preferences ->
             val searchName: String = preferences[KEY_SEARCH_NAME] ?: "Скуби-ду"
             val count: Int = preferences[KEY_COUNT] ?: 5
             val year: Int = preferences[KEY_YEAR] ?: 2004
+            val isNotDefault: Boolean = preferences[KEY_IS_NOT_DEFAULT] ?: false
 
             return@map PreferencesDto(
                 searchName,
                 count,
-                year
+                year,
+                isNotDefault
             )
         }
 
@@ -56,8 +60,17 @@ class FilmViewModel(
                 setSearchName(it.searchName)
                 setCountSearchFilm(it.count)
                 setYear(it.year)
+                setIsNotDefault(it.isNotDefault)
             }
         }
+    }
+
+    private fun setIsNotDefault(notDefault: Boolean) {
+        mutableState.isNotDefault = notDefault
+    }
+
+    fun getParameterIsNotDefault(): Boolean {
+        return mutableState.isNotDefault
     }
 
     private fun loadFilms() {
@@ -106,6 +119,7 @@ class FilmViewModel(
             settings[KEY_SEARCH_NAME] = nameFilm
             settings[KEY_COUNT] = countSearchFilm
             settings[KEY_YEAR] = year
+            settings[KEY_IS_NOT_DEFAULT] = true
         }
     }
 
@@ -123,5 +137,6 @@ class FilmViewModel(
         override var items: List<Film> by mutableStateOf(emptyList())
         override var error: String? by mutableStateOf(null)
         override var loading: Boolean by mutableStateOf(false)
+        override var isNotDefault: Boolean by mutableStateOf(false)
     }
 }
