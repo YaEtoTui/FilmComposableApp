@@ -14,17 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,7 +30,6 @@ import com.github.terrakok.modo.stack.StackNavContainer
 import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
-import sazhin.pp.filmcomposableapp.R
 import sazhin.pp.filmcomposableapp.domain.models.Film
 import sazhin.pp.filmcomposableapp.ui.components.FullScreenProgress
 import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
@@ -61,28 +53,6 @@ class ListScreen(
                     0,
                     0
                 )
-            }
-
-            var text: String by remember { mutableStateOf("") }
-
-            TextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            )
-
-            if (text.isNotEmpty()) {
-                TextButton(
-                    onClick = {
-                        viewModel.setSearchName(text)
-                    }
-                ) {
-                    Text(stringResource(R.string.confirm))
-                }
             }
 
             state.error?.let {

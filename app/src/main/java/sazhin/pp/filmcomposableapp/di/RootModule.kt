@@ -10,5 +10,5 @@ import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 val rootModule = module {
     single<IFilmRepository> { FilmRepository(get(), get()) }
     factory { FilmResponseToEntityMapper() }
-    viewModel { FilmViewModel(get()) }
+    viewModel { FilmViewModel(get(), get()) }
 }
