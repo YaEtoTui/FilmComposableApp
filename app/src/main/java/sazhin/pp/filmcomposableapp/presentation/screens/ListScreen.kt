@@ -13,11 +13,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,8 +39,8 @@ import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
 import sazhin.pp.filmcomposableapp.domain.models.Film
-import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 import sazhin.pp.filmcomposableapp.ui.components.FullScreenProgress
+import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 
 @Parcelize
 class ListScreen(
@@ -64,7 +72,7 @@ class ListScreen(
                 lazyColumnState
             ) {
                 items(state.items) {
-                    ConstructorItem(item = it, navigation)
+                    ConstructorItem(item = it, viewModel::onFavoriteClicked, navigation)
                 }
             }
         }
@@ -78,6 +86,7 @@ class ListScreen(
 @Composable
 private fun ConstructorItem(
     item: Film,
+    onFavoriteClicked: (Film) -> Unit = {},
     navigation: StackNavContainer? = null,
 ) {
     Row(
@@ -106,6 +115,24 @@ private fun ConstructorItem(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
+
+            var isFavorite by remember { mutableStateOf(false) }
+
+            val iconColor = if (isFavorite) {
+                Color.Red
+            } else {
+                Color.Gray
+            }
+
+            Icon(
+                Icons.Default.FavoriteBorder,
+                contentDescription = null,
+                tint = iconColor,
+                modifier = Modifier.clickable {
+                    isFavorite = !isFavorite
+                    onFavoriteClicked.invoke(item)
+                }
+            )
         }
     }
 }
@@ -127,7 +154,7 @@ private fun ConstructorItemPreview() {
                     "Скуби-Ду и его команде придется преодолеть личные разногласия и по-новому взглянуть на мнимых вампиров и нереальных привидений. И все это, чтобы распутать дело, спасти самих себя, а возможно... и весь мир...",
             "Скуби-Ду и его команде придется преодолеть личные разногласия и по-новому взглянуть на мнимых вампиров и нереальных привидений.",
             10.0,
-            89,
+            89
         )
     )
 }
