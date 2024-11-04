@@ -1,4 +1,4 @@
-package sazhin.pp.filmcomposableapp.models
+package sazhin.pp.filmcomposableapp.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

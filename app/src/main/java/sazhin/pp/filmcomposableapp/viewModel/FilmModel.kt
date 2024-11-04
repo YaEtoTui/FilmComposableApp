@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ru.urfu.consecutivepractice.coroutinesUtils.launchLoadingAndError
 import sazhin.pp.filmcomposableapp.domain.IFilmRepository
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 import sazhin.pp.filmcomposableapp.state.ListState
 
 class FilmModel(

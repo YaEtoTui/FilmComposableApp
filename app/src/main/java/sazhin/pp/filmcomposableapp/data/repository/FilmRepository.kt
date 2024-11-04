@@ -5,7 +5,7 @@ import kotlinx.coroutines.withContext
 import sazhin.pp.filmcomposableapp.data.api.FilmApi
 import sazhin.pp.filmcomposableapp.data.mapper.FilmResponseToEntityMapper
 import sazhin.pp.filmcomposableapp.domain.IFilmRepository
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 
 class FilmRepository(
     private val api: FilmApi,

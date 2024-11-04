@@ -15,7 +15,7 @@ import com.github.terrakok.modo.Screen
 import com.github.terrakok.modo.ScreenKey
 import com.github.terrakok.modo.generateScreenKey
 import kotlinx.parcelize.Parcelize
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 
 @Parcelize
 class DetailsScreen(

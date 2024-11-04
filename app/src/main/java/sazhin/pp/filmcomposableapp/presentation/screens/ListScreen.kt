@@ -30,7 +30,7 @@ import com.github.terrakok.modo.stack.StackNavContainer
 import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 import sazhin.pp.filmcomposableapp.viewModel.FilmModel
 import sazhin.pp.filmcomposableapp.ui.components.FullScreenProgress
 

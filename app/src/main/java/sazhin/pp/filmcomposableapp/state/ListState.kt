@@ -1,7 +1,7 @@
 package sazhin.pp.filmcomposableapp.state
 
 import androidx.compose.runtime.Stable
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 
 @Stable
 interface ListState {

@@ -1,7 +1,7 @@
 package sazhin.pp.filmcomposableapp.data.mapper
 
 import sazhin.pp.filmcomposableapp.data.model.FilmsPagingResponse
-import sazhin.pp.filmcomposableapp.models.Film
+import sazhin.pp.filmcomposableapp.domain.models.Film
 
 class FilmResponseToEntityMapper {
     fun mapFilms(response: FilmsPagingResponse): List<Film> {
