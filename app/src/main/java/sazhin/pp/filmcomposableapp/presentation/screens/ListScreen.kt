@@ -31,7 +31,7 @@ import com.github.terrakok.modo.stack.forward
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
 import sazhin.pp.filmcomposableapp.domain.models.Film
-import sazhin.pp.filmcomposableapp.viewModel.FilmModel
+import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 import sazhin.pp.filmcomposableapp.ui.components.FullScreenProgress
 
 @Parcelize
@@ -43,7 +43,7 @@ class ListScreen(
     override fun Content(modifier: Modifier) {
         val navigation = LocalStackNavigation.current
 
-        val viewModel = koinViewModel<FilmModel>()
+        val viewModel = koinViewModel<FilmViewModel>()
         val state = viewModel.viewState
 
         Column(Modifier.fillMaxSize()) {

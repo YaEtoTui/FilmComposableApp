@@ -10,7 +10,7 @@ import sazhin.pp.filmcomposableapp.domain.IFilmRepository
 import sazhin.pp.filmcomposableapp.domain.models.Film
 import sazhin.pp.filmcomposableapp.state.ListState
 
-class FilmModel(
+class FilmViewModel(
     private val repository: IFilmRepository
 ) : ViewModel() {
 
