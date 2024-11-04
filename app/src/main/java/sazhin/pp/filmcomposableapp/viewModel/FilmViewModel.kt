@@ -26,6 +26,8 @@ class FilmViewModel(
             handleError = { mutableState.error = it.localizedMessage },
             updateLoading = { mutableState.loading = it }
         ) {
+
+            mutableState.items = emptyList()
             mutableState.error = null
 
             mutableState.items = repository.getFilms(viewState.searchName)
