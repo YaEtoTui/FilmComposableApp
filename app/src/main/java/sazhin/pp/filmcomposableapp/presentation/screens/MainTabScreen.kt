@@ -27,15 +27,14 @@ import com.github.terrakok.modo.multiscreen.MultiScreenNavModel
 import com.github.terrakok.modo.multiscreen.selectScreen
 import kotlinx.parcelize.Parcelize
 import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.koinInject
 import sazhin.pp.filmcomposableapp.utils.cache.CacheService
 import sazhin.pp.filmcomposableapp.viewModel.FilmViewModel
 
 @Parcelize
 class MainTabScreenFinal(
     private val navModel: MultiScreenNavModel = MultiScreenNavModel(
+        ProfileScreen(),
         ListScreen(),
-        AnotherScreen(),
         FavoriteScreen(),
         SettingsScreen(),
         selected = 0
@@ -118,8 +117,8 @@ enum class MainTabs(
     val icon: ImageVector,
     val title: String
 ) {
-    HOME(Icons.AutoMirrored.Rounded.List, "List"),
     PROFILE(Icons.Default.Face, "Profile"),
+    HOME(Icons.AutoMirrored.Rounded.List, "List"),
     FAVORITES(Icons.Default.Favorite, "Favorite"),
     SETTINGS(Icons.Default.Settings, "Settings")
 }
