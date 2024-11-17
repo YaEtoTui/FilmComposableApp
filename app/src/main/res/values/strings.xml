@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">FilmComposableApp</string>
     <string name="confirm">Подтвердить</string>
+    <string name="profile">Профиль</string>
+    <string name="edit_profile">Редактирование</string>
+    <string name="resume">Резюме</string>
+    <string name="name">Имя</string>
+    <string name="link">Ссылка</string>
 </resources>
