@@ -74,6 +74,8 @@ android {
 
 dependencies {
 
+    implementation(libs.threetenabp)
+
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.androidx.room.runtime)

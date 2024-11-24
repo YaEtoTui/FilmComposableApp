@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import org.koin.core.qualifier.named
 import org.koin.java.KoinJavaComponent.inject
+import org.threeten.bp.LocalTime
 import ru.urfu.consecutivepractice.domain.model.ProfileEntity
 import sazhin.pp.filmcomposableapp.domain.IProfileRepository
 
@@ -15,12 +16,13 @@ class ProfileRepository: IProfileRepository {
 
     override suspend fun getProfile(): ProfileEntity? = dataStore.data.firstOrNull()
 
-    override suspend fun setProfile(photoUri: String, name: String, url: String) =
+    override suspend fun setProfile(photoUri: String, name: String, url: String, time: LocalTime) =
         dataStore.updateData {
             it.toBuilder().apply {
                 this.photoUri = photoUri
                 this.name = name
                 this.url = url
+                this.time = time.toString()
             }.build()
         }
 }
